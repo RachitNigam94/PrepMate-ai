@@ -171,7 +171,7 @@ export function SpeechRecorder({ onTranscriptUpdate, disabled }: SpeechRecorderP
   }
 
   return (
-    <div className="rounded-[4px] border border-rule bg-paper-raised p-3 mb-4">
+    <div className="rounded-[4px] border border-slate-200 bg-white p-3.5 mb-4 shadow-xs text-slate-900">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           {!isRecording ? (
@@ -179,7 +179,7 @@ export function SpeechRecorder({ onTranscriptUpdate, disabled }: SpeechRecorderP
               type="button"
               disabled={disabled}
               onClick={startRecording}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[3px] bg-red-600 hover:bg-red-700 text-white font-semibold text-xs tracking-wide shadow-xs transition-colors"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[3px] bg-red-600 hover:bg-red-700 text-white font-bold text-xs tracking-wide shadow-xs transition-colors"
             >
               <Mic className="w-4 h-4 animate-pulse" />
               <span>Record Out Loud</span>
@@ -189,7 +189,7 @@ export function SpeechRecorder({ onTranscriptUpdate, disabled }: SpeechRecorderP
               <button
                 type="button"
                 onClick={stopRecording}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-ink text-white font-semibold text-xs shadow-xs"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-blue-900 text-white font-bold text-xs shadow-xs"
               >
                 <Square className="w-3.5 h-3.5 fill-current" />
                 <span>Done Speaking</span>
@@ -199,7 +199,7 @@ export function SpeechRecorder({ onTranscriptUpdate, disabled }: SpeechRecorderP
                 <button
                   type="button"
                   onClick={resumeRecording}
-                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[3px] border border-rule hover:bg-gray-100 text-xs text-graphite"
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[3px] border border-slate-300 hover:bg-slate-100 text-xs font-semibold text-slate-800"
                 >
                   <Play className="w-3.5 h-3.5" />
                   <span>Resume</span>
@@ -208,7 +208,7 @@ export function SpeechRecorder({ onTranscriptUpdate, disabled }: SpeechRecorderP
                 <button
                   type="button"
                   onClick={pauseRecording}
-                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[3px] border border-rule hover:bg-gray-100 text-xs text-pencil"
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[3px] border border-slate-300 hover:bg-slate-100 text-xs font-semibold text-slate-600"
                 >
                   <span>Pause</span>
                 </button>
@@ -217,26 +217,26 @@ export function SpeechRecorder({ onTranscriptUpdate, disabled }: SpeechRecorderP
           )}
 
           {isRecording && (
-            <div className="flex items-center gap-2 pl-2 border-l border-rule">
+            <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-              <span className="font-mono text-xs font-semibold text-graphite">{formatTime(seconds)}</span>
+              <span className="font-mono text-xs font-bold text-slate-900">{formatTime(seconds)}</span>
               {wpm > 0 && (
-                <span className="text-xs font-mono text-pencil ml-1">
-                  · {wpm} WPM <span className="hidden sm:inline font-sans text-[11px] text-ink font-medium">({paceFeedback})</span>
+                <span className="text-xs font-mono text-slate-600 ml-1">
+                  · {wpm} WPM <span className="hidden sm:inline font-sans text-[11px] text-blue-900 font-bold">({paceFeedback})</span>
                 </span>
               )}
             </div>
           )}
         </div>
 
-        <div className="text-xs text-pencil flex items-center gap-1.5">
-          <Volume2 className="w-3.5 h-3.5" />
+        <div className="text-xs text-slate-600 font-medium flex items-center gap-1.5">
+          <Volume2 className="w-3.5 h-3.5 text-blue-800" />
           <span>Speak clearly as if talking to an interviewer</span>
         </div>
       </div>
 
       {interimText && (
-        <div className="mt-2 text-xs italic text-pencil bg-gray-50/70 p-2 rounded border border-dashed border-rule">
+        <div className="mt-2 text-xs text-slate-800 bg-slate-50 p-2.5 rounded border border-dashed border-slate-300">
           Listening: &ldquo;{interimText}&rdquo;
         </div>
       )}

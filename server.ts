@@ -69,9 +69,9 @@ interface Session {
 
 let currentUser: UserMe = {
   id: 'cand-001',
-  email: 'candidate@placement.prep',
+  email: 'guest@placement.prep',
   profile: {
-    display_name: 'Arjun Sharma',
+    display_name: 'Guest',
     target_role: 'Software Development Engineer (SDE-1)',
     experience_level: 'student',
     created_at: new Date(Date.now() - 7 * 86400000).toISOString(),

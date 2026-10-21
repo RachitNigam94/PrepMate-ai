@@ -2,21 +2,20 @@
 
 /*
  * PrepMate's iconic visual identity: the ruled answer sheet from an exam hall.
- * Blue rules, a red margin line, royal-blue ink. Everything else stays quiet and focused.
+ * High-contrast, crystal-clear readability: dark ink & graphite on crisp white paper.
  */
 :root {
   --paper: #fafbfd;
   --paper-raised: #ffffff;
-  --rule: #d3deec;
-  --margin: #c4323b;
-  --ink: #22398c;
-  --ink-hover: #1a2c6e;
-  --graphite: #2f3542;
-  --pencil: #5d6575;
-  --danger: #a3242c;
-  --success: #1d6b45;
+  --rule: #cbd5e1;
+  --margin: #dc2626;
+  --ink: #1e3a8a;
+  --ink-hover: #172554;
+  --graphite: #0f172a;
+  --pencil: #475569;
+  --danger: #b91c1c;
+  --success: #15803d;
   --rule-gap: 2rem;
-  /* Lifts the rules so text baselines sit on them rather than float between. */
   --rule-lift: 0.5rem;
   color-scheme: light;
 }
@@ -25,22 +24,6 @@
   :root {
     --rule-gap: 2.25rem;
     --rule-lift: 0.55rem;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #12161f;
-    --paper-raised: #181d28;
-    --rule: #263145;
-    --margin: #e05a62;
-    --ink: #a9bcff;
-    --ink-hover: #c7d3ff;
-    --graphite: #dde1e9;
-    --pencil: #a2aab8;
-    --danger: #ff8a90;
-    --success: #74d3a3;
-    color-scheme: dark;
   }
 }
 
@@ -61,29 +44,30 @@
 
 @layer base {
   html {
-    background: var(--paper);
-    color: var(--graphite);
+    background-color: #fafbfd;
+    color: #0f172a;
     font-family: var(--font-sans);
     font-size: 106.25%; /* 17px */
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
+    color-scheme: light;
   }
 
   body {
     min-height: 100dvh;
-    background: var(--paper);
-    color: var(--graphite);
+    background-color: #fafbfd;
+    color: #0f172a;
     margin: 0;
   }
 
   :focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 3px;
+    outline: 2px solid #1e3a8a;
+    outline-offset: 2px;
     border-radius: 2px;
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--ink) 22%, transparent);
+    background-color: rgba(30, 58, 138, 0.18);
   }
 }
 
@@ -96,7 +80,7 @@
     background-image: linear-gradient(
       to bottom,
       transparent calc(var(--rule-gap) - 1px),
-      var(--rule) calc(var(--rule-gap) - 1px)
+      #dbeafe calc(var(--rule-gap) - 1px)
     );
     background-size: 100% var(--rule-gap);
     background-position: 0 calc(var(--rule-lift) * -1);
@@ -109,7 +93,7 @@
     inset-block: 0;
     left: 2.25rem;
     width: 2px;
-    background: var(--margin);
+    background: #dc2626;
     opacity: 0.85;
   }
 
@@ -119,46 +103,47 @@
     top: -0.235em;
     font-family: var(--font-display);
     font-optical-sizing: auto;
-    font-weight: 600;
-    color: var(--ink);
+    font-weight: 700;
+    color: #1e3a8a;
     font-size: 1.6rem;
     line-height: var(--rule-gap);
-    letter-spacing: -0.012em;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
   @media (min-width: 48rem) {
     .sheet-title {
-      font-size: 2.05rem;
+      font-size: 2.1rem;
     }
   }
 
   .field-label {
     display: block;
     font-weight: 600;
-    color: var(--graphite);
+    color: #0f172a;
     margin-bottom: 0.375rem;
   }
 
   .field-input {
     width: 100%;
-    border: 1px solid var(--rule);
-    border-bottom: 2px solid color-mix(in srgb, var(--ink) 55%, var(--rule));
-    background: var(--paper-raised);
-    color: var(--graphite);
-    padding: 0.6rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-bottom: 2px solid #1e3a8a;
+    background-color: #ffffff;
+    color: #0f172a;
+    padding: 0.65rem 0.85rem;
     border-radius: 4px;
     font-size: 1rem;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
 
   .field-input::placeholder {
-    color: var(--pencil);
+    color: #94a3b8;
   }
 
   .field-input:focus-visible {
-    outline: 2px solid var(--ink);
+    outline: 2px solid #1e3a8a;
     outline-offset: 1px;
+    border-color: #1e3a8a;
   }
 
   .btn {
@@ -185,23 +170,24 @@
   }
 
   .btn-primary {
-    background: var(--ink);
-    color: var(--paper);
+    background-color: #1e3a8a !important;
+    color: #ffffff !important;
     border: 1px solid transparent;
   }
 
   .btn-primary:not(:disabled):hover {
-    background: var(--ink-hover);
+    background-color: #172554 !important;
   }
 
   .btn-quiet {
-    color: var(--ink);
-    border: 1px solid var(--rule);
-    background: transparent;
+    color: #1e3a8a;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
   }
 
   .btn-quiet:not(:disabled):hover {
-    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
   }
 }
 
