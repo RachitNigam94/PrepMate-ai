@@ -1,0 +1,6 @@
+{
+  "name": "PrepMate AI",
+  "description": "AI-powered interview practice for placement season with STAR-scored feedback, structure evaluation, and voice/typed responses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
