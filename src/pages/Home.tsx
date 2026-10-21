@@ -217,9 +217,9 @@ export function Home({
       </div>
 
       {/* Metrics Banner */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
         <div className="rounded-[4px] border border-slate-200 bg-white p-4 text-center shadow-xs">
-          <span className="text-xs text-slate-500 block font-medium">Sessions Done</span>
+          <span className="text-xs text-slate-500 block font-medium">Sessions Completed</span>
           <span className="text-2xl font-bold text-slate-900 font-display mt-0.5 block">
             {completedSessions.length}
           </span>
@@ -235,13 +235,6 @@ export function Home({
           <span className="text-2xl font-bold text-emerald-700 font-display mt-0.5 block">
             {avgOverall ? `${avgOverall}/10` : '—'}
           </span>
-        </div>
-        <div className="rounded-[4px] border border-slate-200 bg-white p-4 text-center shadow-xs">
-          <span className="text-xs text-slate-500 block font-medium">Daily AI Quota</span>
-          <span className="text-2xl font-bold text-blue-900 font-display mt-0.5 block">
-            {usage ? `${usage.feedback_limit - usage.feedback_calls}` : '50'}
-          </span>
-          <span className="text-[10px] text-slate-500 block">free credits left</span>
         </div>
       </div>
 

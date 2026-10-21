@@ -194,14 +194,7 @@ export function Practice({
             </div>
           </fieldset>
 
-          {usage && (
-            <div className="mt-5 flex items-center justify-between text-xs text-slate-700 bg-white p-3 rounded-[4px] border border-slate-200 shadow-xs">
-              <span>{usage.feedback_calls} feedback calls completed today</span>
-              <span className="font-bold text-blue-900">
-                {usage.feedback_limit - usage.feedback_calls} remaining
-              </span>
-            </div>
-          )}
+
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <button

@@ -2,7 +2,7 @@
 
 /*
  * PrepMate's iconic visual identity: the ruled answer sheet from an exam hall.
- * High-contrast, crystal-clear readability: dark ink & graphite on crisp white paper.
+ * Features both Light (Classic Exam Sheet) and Dark (Midnight Exam Hall) themes.
  */
 :root {
   --paper: #fafbfd;
@@ -20,8 +20,22 @@
   color-scheme: light;
 }
 
+html.dark {
+  --paper: #0b0f17;
+  --paper-raised: #111827;
+  --rule: #1e293b;
+  --margin: #ef4444;
+  --ink: #60a5fa;
+  --ink-hover: #93c5fd;
+  --graphite: #f8fafc;
+  --pencil: #94a3b8;
+  --danger: #f87171;
+  --success: #4ade80;
+  color-scheme: dark;
+}
+
 @media (min-width: 48rem) {
-  :root {
+  :root, html.dark {
     --rule-gap: 2.25rem;
     --rule-lift: 0.55rem;
   }
@@ -44,30 +58,30 @@
 
 @layer base {
   html {
-    background-color: #fafbfd;
-    color: #0f172a;
+    background-color: var(--paper);
+    color: var(--graphite);
     font-family: var(--font-sans);
     font-size: 106.25%; /* 17px */
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
-    color-scheme: light;
+    transition: background-color 200ms ease, color 200ms ease;
   }
 
   body {
     min-height: 100dvh;
-    background-color: #fafbfd;
-    color: #0f172a;
+    background-color: var(--paper);
+    color: var(--graphite);
     margin: 0;
   }
 
   :focus-visible {
-    outline: 2px solid #1e3a8a;
+    outline: 2px solid var(--ink);
     outline-offset: 2px;
     border-radius: 2px;
   }
 
   ::selection {
-    background-color: rgba(30, 58, 138, 0.18);
+    background-color: rgba(59, 130, 246, 0.25);
   }
 }
 
@@ -80,7 +94,7 @@
     background-image: linear-gradient(
       to bottom,
       transparent calc(var(--rule-gap) - 1px),
-      #dbeafe calc(var(--rule-gap) - 1px)
+      var(--rule) calc(var(--rule-gap) - 1px)
     );
     background-size: 100% var(--rule-gap);
     background-position: 0 calc(var(--rule-lift) * -1);
@@ -93,7 +107,7 @@
     inset-block: 0;
     left: 2.25rem;
     width: 2px;
-    background: #dc2626;
+    background: var(--margin);
     opacity: 0.85;
   }
 
@@ -104,7 +118,7 @@
     font-family: var(--font-display);
     font-optical-sizing: auto;
     font-weight: 700;
-    color: #1e3a8a;
+    color: var(--ink);
     font-size: 1.6rem;
     line-height: var(--rule-gap);
     letter-spacing: -0.015em;
@@ -120,30 +134,30 @@
   .field-label {
     display: block;
     font-weight: 600;
-    color: #0f172a;
+    color: var(--graphite);
     margin-bottom: 0.375rem;
   }
 
   .field-input {
     width: 100%;
-    border: 1px solid #cbd5e1;
-    border-bottom: 2px solid #1e3a8a;
-    background-color: #ffffff;
-    color: #0f172a;
+    border: 1px solid var(--rule);
+    border-bottom: 2px solid var(--ink);
+    background-color: var(--paper-raised);
+    color: var(--graphite);
     padding: 0.65rem 0.85rem;
     border-radius: 4px;
     font-size: 1rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
   }
 
   .field-input::placeholder {
-    color: #94a3b8;
+    color: var(--pencil);
   }
 
   .field-input:focus-visible {
-    outline: 2px solid #1e3a8a;
+    outline: 2px solid var(--ink);
     outline-offset: 1px;
-    border-color: #1e3a8a;
+    border-color: var(--ink);
   }
 
   .btn {
@@ -170,24 +184,23 @@
   }
 
   .btn-primary {
-    background-color: #1e3a8a !important;
+    background-color: var(--ink) !important;
     color: #ffffff !important;
     border: 1px solid transparent;
   }
 
   .btn-primary:not(:disabled):hover {
-    background-color: #172554 !important;
+    background-color: var(--ink-hover) !important;
   }
 
   .btn-quiet {
-    color: #1e3a8a;
-    border: 1px solid #cbd5e1;
-    background-color: #ffffff;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    background-color: var(--paper-raised);
   }
 
   .btn-quiet:not(:disabled):hover {
-    background-color: #f1f5f9;
-    border-color: #94a3b8;
+    background-color: rgba(148, 163, 184, 0.12);
   }
 }
 
@@ -206,6 +219,102 @@
 }
 .rules-5 {
   margin-top: calc(var(--rule-gap) * 5);
+}
+
+/* Dark mode comprehensive overrides */
+html.dark .bg-white {
+  background-color: #111827 !important;
+  color: #f8fafc !important;
+}
+
+html.dark .bg-\[\#fafbfd\] {
+  background-color: #0b0f17 !important;
+}
+
+html.dark .border-slate-200 {
+  border-color: #1e293b !important;
+}
+
+html.dark .border-slate-300 {
+  border-color: #334155 !important;
+}
+
+html.dark .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-slate-500 {
+  color: #64748b !important;
+}
+
+html.dark .text-blue-900,
+html.dark .text-blue-800 {
+  color: #93c5fd !important;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #1a2234 !important;
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+html.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+html.dark .bg-blue-50,
+html.dark .bg-blue-50\/70,
+html.dark .bg-blue-50\/80 {
+  background-color: #172554 !important;
+  border-color: #1e3a8a !important;
+  color: #dbeafe !important;
+}
+
+html.dark .bg-blue-100 {
+  background-color: #1e3a8a !important;
+  color: #dbeafe !important;
+}
+
+html.dark .field-input {
+  background-color: #111827 !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html.dark .field-input::placeholder {
+  color: #64748b !important;
+}
+
+html.dark .btn-quiet {
+  background-color: #111827 !important;
+  color: #93c5fd !important;
+  border-color: #334155 !important;
+}
+
+html.dark .btn-quiet:hover {
+  background-color: #1e293b !important;
+}
+
+html.dark .btn-primary {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+html.dark .btn-primary:hover {
+  background-color: #1d4ed8 !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Wordmark } from './Wordmark.tsx';
-import { BookOpen, User, Sparkles, Download } from 'lucide-react';
-import { Usage } from '../types.ts';
+import { BookOpen, Sun, Moon } from 'lucide-react';
 
 interface HeaderProps {
   currentTab: 'home' | 'practice';
   onNavigate: (tab: 'home' | 'practice') => void;
   onOpenQuestionBank?: () => void;
   onSignOut?: () => void;
-  usage?: Usage | null;
   userName?: string;
+  isDark: boolean;
+  onToggleTheme: () => void;
 }
 
 export function Header({
@@ -17,41 +17,45 @@ export function Header({
   onNavigate,
   onOpenQuestionBank,
   onSignOut,
-  usage,
   userName,
+  isDark,
+  onToggleTheme,
 }: HeaderProps) {
   return (
-    <header className="border-b border-rule bg-paper-raised/70 backdrop-blur-xs sticky top-0 z-30">
+    <header className="border-b border-rule bg-paper-raised/80 backdrop-blur-xs sticky top-0 z-30 transition-colors">
       <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
         <div onClick={() => onNavigate('home')} className="cursor-pointer">
           <Wordmark />
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          {usage && (
-            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-blue-50 border border-blue-200 text-xs font-medium text-ink">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>
-                {usage.feedback_limit - usage.feedback_calls} feedback credits left
-              </span>
-            </div>
-          )}
-
-          <a
-            href="/v1/download-code"
-            download="prepmate-ai.tar.gz"
-            className="btn btn-quiet text-xs py-1.5 px-2.5 h-8 flex items-center gap-1.5 text-graphite hover:text-ink"
-            title="Download Full Project Archive (.tar.gz)"
+          {/* Light / Dark Mode Toggle */}
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            className="btn btn-quiet text-xs py-1.5 px-2.5 h-8 flex items-center gap-1.5 transition-colors"
+            title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label="Toggle theme"
           >
-            <Download className="w-3.5 h-3.5 text-ink" />
-            <span className="hidden sm:inline">Export Code</span>
-          </a>
+            {isDark ? (
+              <>
+                <Sun className="w-3.5 h-3.5 text-amber-400" />
+                <span className="hidden sm:inline font-semibold">Light</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-3.5 h-3.5 text-slate-700" />
+                <span className="hidden sm:inline font-semibold">Dark</span>
+              </>
+            )}
+          </button>
 
+          {/* Question Bank Modal Button */}
           {onOpenQuestionBank && (
             <button
               type="button"
               onClick={onOpenQuestionBank}
-              className="btn btn-quiet text-xs py-1.5 px-2.5 h-8 flex items-center gap-1.5 text-graphite hover:text-ink"
+              className="btn btn-quiet text-xs py-1.5 px-2.5 h-8 flex items-center gap-1.5 transition-colors"
               title="Browse Question Bank"
             >
               <BookOpen className="w-3.5 h-3.5" />
@@ -59,6 +63,7 @@ export function Header({
             </button>
           )}
 
+          {/* Navigation Button */}
           <button
             type="button"
             onClick={() => onNavigate(currentTab === 'home' ? 'practice' : 'home')}
@@ -69,6 +74,7 @@ export function Header({
             {currentTab === 'home' ? 'Start Practising' : 'Dashboard'}
           </button>
 
+          {/* Sign Out */}
           {onSignOut && (
             <button
               type="button"

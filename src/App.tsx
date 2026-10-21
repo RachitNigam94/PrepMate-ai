@@ -17,8 +17,34 @@ export default function App() {
   const [usage, setUsage] = useState<Usage | null>(null);
   const [isQuestionBankOpen, setIsQuestionBankOpen] = useState(false);
 
+  // Black & White (Dark / Light) Theme Mode
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('prepmate_theme') === 'dark';
+    } catch {
+      return false;
+    }
+  });
+
   useEffect(() => {
-    // Check if user session exists or initialize
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      try {
+        localStorage.setItem('prepmate_theme', 'dark');
+      } catch {
+        // ignore
+      }
+    } else {
+      document.documentElement.classList.remove('dark');
+      try {
+        localStorage.setItem('prepmate_theme', 'light');
+      } catch {
+        // ignore
+      }
+    }
+  }, [isDark]);
+
+  useEffect(() => {
     loadAppData();
   }, []);
 
@@ -79,7 +105,6 @@ export default function App() {
       }).then((updated) => {
         setUser(updated);
       }).catch(() => {
-        // Fallback local user
         setUser({
           id: 'user-cand',
           email: `${demoUser.name.toLowerCase().replace(/\s+/g, '')}@placement.edu`,
@@ -109,15 +134,16 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-paper text-graphite antialiased">
+    <div className="min-h-dvh flex flex-col bg-paper text-graphite antialiased transition-colors">
       {/* Top Header */}
       <Header
         currentTab={currentTab}
         onNavigate={(tab) => setCurrentTab(tab)}
         onOpenQuestionBank={() => setIsQuestionBankOpen(true)}
         onSignOut={handleSignOut}
-        usage={usage}
         userName={user.profile.display_name}
+        isDark={isDark}
+        onToggleTheme={() => setIsDark((d) => !d)}
       />
 
       {/* Main Content Area */}
